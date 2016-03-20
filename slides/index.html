@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js – The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/solarized-light.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+<section>
+	<h1>( ) => .bat</h1>
+	<p>Roman Paradeev</p>
+	<!-- <aside class="notes"> </aside> -->
+</section>
+
+<section>
+	<blockquote style="font-size: 1.5em">
+		Programming language “paradigms” are&nbsp;a&nbsp;moribund and tedious legacy of&nbsp;a&nbsp;bygone age.
+	</blockquote>
+</section>
+
+<section data-background-image="img/paper.png">
+</section>
+
+<section>
+	<h3>Aggregation of features</h3>
+</section>
+
+<section>
+	<h2>λ</h2>
+</section>
+
+<section>
+	<pre><code class="javascript" data-trim>
+[1, 2, 3].map(x => x * x)
+	</code></pre>
+</section>
+
+<section>
+	<h2>.bat</h2>
+</section>
+
+<section>
+	<pre><code class="dos" data-trim>
+if not "%1" == "" (
+  set user=%1
+  echo Hello, %user%
+)
+	</code></pre>
+</section>
+
+<section>
+	<pre><code class="nohighlight" data-trim data-noescape>
+%1     <span class="hljs-comment">:: аргумент</span>
+%%i    <span class="hljs-comment">:: счётчик цикла</span>
+%user% <span class="hljs-comment">:: переменная</span>
+!user! <span class="hljs-comment">:: ಠ_ಠ</span>
+	</code></pre>
+</section>
+
+<section>
+	<pre><code class="nohighlight" data-trim data-noescape>
+if   <span class="hljs-comment">:: ветвление</span>
+for  <span class="hljs-comment">:: цикл</span>
+goto <span class="hljs-comment">:: переход</span>
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code class="javascript" data-trim>
+function greet(name) {
+  var greeting = 'Hello, ' + name;
+  return greeting;
+}
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet
+  echo Hello, Roman
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+echo calling a function
+goto:greet
+echo never returned :(
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet
+  echo Hello, Roman
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+echo calling a function
+call:greet
+echo returned from it!
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+call:greet
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+call:greet Roman
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet
+  echo Hello, Roman
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet
+  echo Hello, %1
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet :: (name)
+  echo Hello, %1
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+call:greet Roman
+	</code></pre>
+</section>
+<section>
+	<pre><code data-trim>
+call:greet Roman result
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet :: (name)
+  echo Hello, %1
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet :: (name)
+  set %2=Hello, %1
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet :: (name, *return)
+  set %2=Hello, %1
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+call:greet Roman result
+&nbsp;
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+call:greet Roman result
+echo %result%
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+&nbsp;
+call:greet Roman result
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+set name=Roman
+call:greet %name% result
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:greet :: (name, *return)
+  set name=Mr. %1
+  set %2=Hello, %name%
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre class="whisper"><code data-trim>
+set name=Roman
+call:greet %name% result
+
+:greet :: (name, *return)
+  set name=Mr. %1
+  set %2=Hello, %name%
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+set name=Roman
+call:greet %name% result
+echo %name%
+rem Mr. Roman
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+setlocal
+rem some code
+endlocal
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:greet :: (name, *return)
+  setlocal
+  set name=Mr. %1
+  set %2=Hello, %name%
+  endlocal
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:greet :: (name, *return)
+  setlocal
+  set name=Mr. %1
+  set result=Hello, %name%
+  endlocal & %2=%result%
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre class="whisper"><code data-trim>
+:greet :: (name, *return)
+  setlocal
+  endlocal & %2=...
+  goto:eol
+	</code></pre>
+	<pre class="whisper"><code class="javascript" data-trim>
+var greet = (name) => {
+  return ...
+}
+	</code></pre>
+</section>
+
+<section>
+	<h2>Now we are talking business</h2>
+</section>
+
+<section>
+	<h3>First class citizens</h3>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:greet :: (name, *return)
+  setlocal
+  set name=Mr. %1
+  set result=Hello, %name%
+  endlocal & %2=%result%
+  goto:eol
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:greet :: (name, *return)
+  set name=Mr. %1
+  set %2=Hello, %name%
+	</code></pre>
+	<pre class="dense"><code data-trim>
+&nbsp;
+&nbsp;
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:greet :: (name, *decor, *return)
+  call:%2 %1 name
+  set %3=Hello, %name%
+	</code></pre>
+	<pre class="dense"><code data-trim>
+:addPrefix :: (name, *return)
+  set %2=Mr. %1
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+call:greet Roman addPrefix result
+	</code></pre>
+</section>
+
+<section>
+	<h3>Partial application</h3>
+</section>
+
+<section>
+	<section>
+		<pre class="dense"><code class="javascript" data-trim>
+var sum = (a, b) => a + b;
+var sum2 = (a) => sum(2, a);
+
+sum2(3); // 7
+		</code></pre>
+	</section>
+
+	<section>
+		<pre class="dense"><code class="javascript" data-trim>
+function sum(a, b) {
+  return a + b;
+}
+var sum2 = sum.bind(null, 2);
+sum2(3); // 7
+		</code></pre>
+	</section>
+</section>
+
+<section>
+	<pre><code data-trim>
+:add :: (a, b, *return)
+  set /a %3=%1+%2
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+set add2=add 2
+call:%add2% 3 res
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+&nbsp;
+call:add 2 3 res
+	</code></pre>
+</section>
+
+<section>
+	<h3>forEach/map/reduce</h3>
+</section>
+
+<section>
+	<pre class="dense"><code class="javascript" data-trim>
+[1, 2, 3].forEach(function (x) {
+  var double = x * 2;
+  console.log(double);
+});
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+set numbers="1,2,3"
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+for %%i in ("1,2,3") do (
+  echo %%i
+)
+	</code></pre>
+</section>
+
+<section>
+	<pre><code data-trim>
+:forEach :: (xs, fn)
+  for %%i in (%1) do (
+    call:%2 %%i
+  )
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+call:forEach "1,2,3" double
+
+:double :: (x, *result)
+  set /a %2=%1*2
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:map :: (xs, fn, *result)
+  for %%x in (%1) do (
+    call:%2 %%x subresult
+    set result=!result!,!subresult!
+  )
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+:add :: (x, y, *result)
+  set /a %3=%1+%2
+  goto:eof
+:mul :: (x, y, *result)
+  set /a %3=%1*%2
+  goto:eof
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
+set xs="1,2,3"
+set fns="add 2,mul 3,add 7"
+call:compose %xs% %fns% result
+	</code></pre>
+</section>
+
+<section>
+	<pre class="glance"><code data-trim>
+:compose :: (xs, fns, *result)
+  setlocal EnableDelayedExpansion
+    set fns=%~2
+    for %%x in (%~1) do (
+      set subresult=%%x
+      for %%y in ("%fns:,=" "%") do (
+        call:%%~y !subresult! subresult
+      )
+      set result=!result!,!subresult!
+    )
+  endlocal & set %3=%result:~1%
+  goto:eof
+	</code></pre>
+</section>
+
+<section>
+	<h2>Meta</h2>
+</section>
+
+<section>
+	<h2>Why?</h2>
+</section>
+
+<section>
+	<img src="img/gcli.gif">
+	<p>143 loc</p>
+</section>
+
+<section>
+	<h3>Quetions?</h3>
+	<ul>
+		<li>frontendfellows.timepad.ru/event/284979/</li>
+		<li>github.com/sameoldmadness</li>
+		<li>@sameoldmadness</li>
+	</ul>
+</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				slideNumber: true,
+				history: true,
+				center: true,
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+				backgroundTransition: 'none', // none/fade/slide/convex/concave/<zoom></zoom>
+
+				showNotes: true,
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
