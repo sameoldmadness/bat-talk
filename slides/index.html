@@ -128,7 +128,7 @@ echo never returned :(
 	<pre><code data-trim>
 :greet
   echo Hello, Roman
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -156,7 +156,7 @@ call:greet Roman
 	<pre><code data-trim>
 :greet
   echo Hello, Roman
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -164,7 +164,7 @@ call:greet Roman
 	<pre><code data-trim>
 :greet
   echo Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -172,7 +172,7 @@ call:greet Roman
 	<pre><code data-trim>
 :greet :: (name)
   echo Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -191,7 +191,7 @@ call:greet Roman result
 	<pre><code data-trim>
 :greet :: (name)
   echo Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -199,7 +199,7 @@ call:greet Roman result
 	<pre><code data-trim>
 :greet :: (name)
   set %2=Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -207,7 +207,7 @@ call:greet Roman result
 	<pre><code data-trim>
 :greet :: (name, *return)
   set %2=Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -244,7 +244,7 @@ call:greet %name% result
 :greet :: (name, *return)
   set name=Mr. %1
   set %2=Hello, %name%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -256,7 +256,7 @@ call:greet %name% result
 :greet :: (name, *return)
   set name=Mr. %1
   set %2=Hello, %name%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -284,7 +284,7 @@ endlocal
   set name=Mr. %1
   set %2=Hello, %name%
   endlocal
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -295,7 +295,7 @@ endlocal
   set name=Mr. %1
   set result=Hello, %name%
   endlocal & %2=%result%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -304,7 +304,7 @@ endlocal
 :greet :: (name, *return)
   setlocal
   endlocal & %2=...
-  goto:eol
+  goto:eof
 	</code></pre>
 	<pre class="whisper"><code class="javascript" data-trim>
 var greet = (name) => {
@@ -328,7 +328,7 @@ var greet = (name) => {
   set name=Mr. %1
   set result=Hello, %name%
   endlocal & %2=%result%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
