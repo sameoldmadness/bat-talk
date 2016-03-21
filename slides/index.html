@@ -128,7 +128,7 @@ echo never returned :(
 	<pre><code data-trim>
 :greet
   echo Hello, Roman
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -156,7 +156,7 @@ call:greet Roman
 	<pre><code data-trim>
 :greet
   echo Hello, Roman
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -164,7 +164,7 @@ call:greet Roman
 	<pre><code data-trim>
 :greet
   echo Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -172,7 +172,7 @@ call:greet Roman
 	<pre><code data-trim>
 :greet :: (name)
   echo Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -191,7 +191,7 @@ call:greet Roman result
 	<pre><code data-trim>
 :greet :: (name)
   echo Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -199,7 +199,7 @@ call:greet Roman result
 	<pre><code data-trim>
 :greet :: (name)
   set %2=Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -207,7 +207,7 @@ call:greet Roman result
 	<pre><code data-trim>
 :greet :: (name, *return)
   set %2=Hello, %1
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -244,7 +244,7 @@ call:greet %name% result
 :greet :: (name, *return)
   set name=Mr. %1
   set %2=Hello, %name%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -256,7 +256,7 @@ call:greet %name% result
 :greet :: (name, *return)
   set name=Mr. %1
   set %2=Hello, %name%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -284,7 +284,7 @@ endlocal
   set name=Mr. %1
   set %2=Hello, %name%
   endlocal
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -295,7 +295,7 @@ endlocal
   set name=Mr. %1
   set result=Hello, %name%
   endlocal & %2=%result%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -304,7 +304,7 @@ endlocal
 :greet :: (name, *return)
   setlocal
   endlocal & %2=...
-  goto:eol
+  goto:eof
 	</code></pre>
 	<pre class="whisper"><code class="javascript" data-trim>
 var greet = (name) => {
@@ -328,7 +328,7 @@ var greet = (name) => {
   set name=Mr. %1
   set result=Hello, %name%
   endlocal & %2=%result%
-  goto:eol
+  goto:eof
 	</code></pre>
 </section>
 
@@ -346,9 +346,21 @@ var greet = (name) => {
 
 <section>
 	<pre class="dense"><code data-trim>
+:greet :: (name, *return)
+  set name=Mr. %1
+  set %2=Hello, %name%
+	</code></pre>
+	<pre class="dense"><code data-trim>
+:addPrefix :: (name, *return)
+  set %2=Mr. %1
+	</code></pre>
+</section>
+
+<section>
+	<pre class="dense"><code data-trim>
 :greet :: (name, *decor, *return)
-  call:%2 %1 name
-  set %3=Hello, %name%
+  call:%2 %1 decoratedName
+  set %3=Hello, %decoratedName%
 	</code></pre>
 	<pre class="dense"><code data-trim>
 :addPrefix :: (name, *return)
@@ -369,20 +381,20 @@ call:greet Roman addPrefix result
 <section>
 	<section>
 		<pre class="dense"><code class="javascript" data-trim>
-var sum = (a, b) => a + b;
-var sum2 = (a) => sum(2, a);
+var add = (a, b) => a + b;
+var add2 = (a) => add(2, a);
 
-sum2(3); // 7
+add2(3); // 5
 		</code></pre>
 	</section>
 
 	<section>
 		<pre class="dense"><code class="javascript" data-trim>
-function sum(a, b) {
+function add(a, b) {
   return a + b;
 }
-var sum2 = sum.bind(null, 2);
-sum2(3); // 7
+var add2 = add.bind(null, 2);
+add2(3); // 5
 		</code></pre>
 	</section>
 </section>
@@ -448,8 +460,9 @@ for %%i in ("1,2,3") do (
 	<pre class="dense"><code data-trim>
 call:forEach "1,2,3" double
 
-:double :: (x, *result)
-  set /a %2=%1*2
+:double :: (x)
+  set /a result=%1*2
+  echo %result%
 	</code></pre>
 </section>
 
