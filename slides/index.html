@@ -84,23 +84,6 @@ if not "%1" == "" (
 </section>
 
 <section>
-	<pre><code class="nohighlight" data-trim data-noescape>
-%1     <span class="hljs-comment">:: аргумент</span>
-%%i    <span class="hljs-comment">:: счётчик цикла</span>
-%user% <span class="hljs-comment">:: переменная</span>
-!user! <span class="hljs-comment">:: ಠ_ಠ</span>
-	</code></pre>
-</section>
-
-<section>
-	<pre><code class="nohighlight" data-trim data-noescape>
-if   <span class="hljs-comment">:: ветвление</span>
-for  <span class="hljs-comment">:: цикл</span>
-goto <span class="hljs-comment">:: переход</span>
-	</code></pre>
-</section>
-
-<section>
 	<pre class="dense"><code class="javascript" data-trim>
 function greet(name) {
   var greeting = 'Hello, ' + name;
@@ -125,6 +108,17 @@ echo never returned :(
 </section>
 
 <section>
+	<pre class="dense"><code data-trim>
+echo calling a function
+goto:greet
+echo never returned :(
+
+:greet
+  echo Hello, Roman
+	</code></pre>
+</section>
+
+<section>
 	<pre><code data-trim>
 :greet
   echo Hello, Roman
@@ -141,6 +135,18 @@ echo returned from it!
 </section>
 
 <section>
+	<pre class="dense"><code data-trim>
+echo calling a function
+call:greet
+echo returned from it!
+
+:greet
+  echo Hello, Roman
+  goto:eof
+	</code></pre>
+</section>
+
+<section>
 	<pre><code data-trim>
 call:greet
 	</code></pre>
@@ -177,6 +183,16 @@ call:greet Roman
 </section>
 
 <section>
+	<pre class="dense"><code data-trim>
+call:greet Roman
+
+:greet :: (name)
+  echo Hello, %1
+  goto:eof
+	</code></pre>
+</section>
+
+<section>
 	<pre><code data-trim>
 call:greet Roman
 	</code></pre>
@@ -197,14 +213,6 @@ call:greet Roman result
 
 <section>
 	<pre><code data-trim>
-:greet :: (name)
-  set %2=Hello, %1
-  goto:eof
-	</code></pre>
-</section>
-
-<section>
-	<pre><code data-trim>
 :greet :: (name, *return)
   set %2=Hello, %1
   goto:eof
@@ -214,14 +222,18 @@ call:greet Roman result
 <section>
 	<pre><code data-trim>
 call:greet Roman result
-&nbsp;
+echo %result%
 	</code></pre>
 </section>
 
 <section>
-	<pre><code data-trim>
+	<pre class="dense"><code data-trim>
 call:greet Roman result
 echo %result%
+
+:greet :: (name, *return)
+  set %2=Hello, %1
+  goto:eof
 	</code></pre>
 </section>
 
@@ -294,7 +306,7 @@ endlocal
   setlocal
   set name=Mr. %1
   set result=Hello, %name%
-  endlocal & %2=%result%
+  endlocal & set %2=%result%
   goto:eof
 	</code></pre>
 </section>
@@ -303,7 +315,7 @@ endlocal
 	<pre class="whisper"><code data-trim>
 :greet :: (name, *return)
   setlocal
-  endlocal & %2=...
+  endlocal & set %2=...
   goto:eof
 	</code></pre>
 	<pre class="whisper"><code class="javascript" data-trim>
@@ -327,7 +339,7 @@ var greet = (name) => {
   setlocal
   set name=Mr. %1
   set result=Hello, %name%
-  endlocal & %2=%result%
+  endlocal & set %2=%result%
   goto:eof
 	</code></pre>
 </section>
@@ -337,9 +349,8 @@ var greet = (name) => {
 :greet :: (name, *return)
   set name=Mr. %1
   set %2=Hello, %name%
-	</code></pre>
-	<pre class="dense"><code data-trim>
-&nbsp;
+
+
 &nbsp;
 	</code></pre>
 </section>
@@ -349,8 +360,7 @@ var greet = (name) => {
 :greet :: (name, *return)
   set name=Mr. %1
   set %2=Hello, %name%
-	</code></pre>
-	<pre class="dense"><code data-trim>
+
 :addPrefix :: (name, *return)
   set %2=Mr. %1
 	</code></pre>
@@ -361,8 +371,7 @@ var greet = (name) => {
 :greet :: (name, *decor, *return)
   call:%2 %1 decoratedName
   set %3=Hello, %decoratedName%
-	</code></pre>
-	<pre class="dense"><code data-trim>
+
 :addPrefix :: (name, *return)
   set %2=Mr. %1
 	</code></pre>
@@ -467,6 +476,53 @@ call:forEach "1,2,3" double
 </section>
 
 <section>
+	<h2>Meta</h2>
+</section>
+
+<!-- <section data-background-video="video/meta.mp4" data-background-video-loop> -->
+<section>
+	<video poster loop controls src="video/meta.mp4" class="stretch"></video>
+</section>
+
+<section>
+	<h2>Why?</h2>
+</section>
+
+<section>
+	<img src="img/gcli.gif" class="stretch">
+</section>
+
+<section>
+	<style>p.shout { font-size: 3em }</style>
+	<p class="shout">143 loc</p>
+	<p class="shout">no deps</p>
+</section>
+
+<section>
+	<h3>ಠ_ಠ</h3>
+	<ul>
+		<li>frontendfellows.timepad.ru/event/284979/</li>
+		<li>github.com/sameoldmadness</li>
+		<li>@sameoldmadness</li>
+	</ul>
+</section>
+
+<section>
+	<pre><code class="nohighlight" data-trim data-noescape>
+%1     <span class="hljs-comment">:: аргумент</span>
+%%i    <span class="hljs-comment">:: счётчик цикла</span>
+%user% <span class="hljs-comment">:: переменная</span>
+!user! <span class="hljs-comment">:: переменная в цикле</span>
+	</code></pre>
+</section>
+
+<section>
+	<pre><code class="nohighlight" data-trim data-noescape>
+if   <span class="hljs-comment">:: ветвление</span>
+for  <span class="hljs-comment">:: цикл</span>
+goto <span class="hljs-comment">:: переход</span>
+	</code></pre>
+</section><section>
 	<pre class="dense"><code data-trim>
 :map :: (xs, fn, *result)
   for %%x in (%1) do (
@@ -510,38 +566,6 @@ call:compose %xs% %fns% result
   endlocal & set %3=%result:~1%
   goto:eof
 	</code></pre>
-</section>
-
-<section>
-	<h2>Meta</h2>
-</section>
-
-<!-- <section data-background-video="video/meta.mp4" data-background-video-loop> -->
-<section>
-	<video poster loop controls src="video/meta.mp4" class="stretch"></video>
-</section>
-
-<section>
-	<h2>Why?</h2>
-</section>
-
-<section>
-	<img src="img/gcli.gif" class="stretch">
-</section>
-
-<section>
-	<style>p.shout { font-size: 3em }</style>
-	<p class="shout">143 loc</p>
-	<p class="shout">no deps</p>
-</section>
-
-<section>
-	<h3>Questions?</h3>
-	<ul>
-		<li>frontendfellows.timepad.ru/event/284979/</li>
-		<li>github.com/sameoldmadness</li>
-		<li>@sameoldmadness</li>
-	</ul>
 </section>
 
 			</div>
